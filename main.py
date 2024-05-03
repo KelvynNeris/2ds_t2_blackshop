@@ -23,11 +23,11 @@ def cadastro():
         telefone = request.form["telefone"]
         endereco = request.form["endereco"]
         email = request.form["email"]
-        cpf = request.form["cpf"]
+        senha = request.form["senha"]
 
         usuario = Usuario()
 
-        if usuario.cadastrar(nome, cpf, telefone, endereco, email, cpf):
+        if usuario.cadastrar(nome, cpf, telefone, endereco, email,senha):
             return "CADASTRO EFEUTADO COM SUCESSO"
         else:
             return "FALHA AO CADASTRAR"
