@@ -7,7 +7,7 @@ class Conexao:
             user="root",
             password="root",
             host="localhost",
-            database="shopbck"
+            database="shopblack"
         )
         
         return mydb
