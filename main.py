@@ -1,16 +1,12 @@
-from flask import Flask, render_template, session, redirect, request
+from flask import Flask, render_template, request
 from usuario import Usuario
-import sqlite3
+
 
 
 
 
 app = Flask(__name__)
-conexao = sqlite3.connect("shopbck.sqlite")
-cursor = conexao.cursor()
-cursor.execute()
-conexao.commit()
-conexao.close()
+
 
 # Define cadastro route
 @app.route("/cadastro", methods = ["GET", "POST"])
@@ -34,7 +30,7 @@ def cadastro():
      
        
     
-@app.route('/logar', methods = ['GET','POST'])
+""" @app.route('/logar', methods = ['GET','POST'])
 def logar():
     if request.method =='GET':
         return render_template('login.html')
@@ -50,5 +46,5 @@ def logar():
             
         else:
             session.clear()
-            return redirect("/logar")
+            return redirect("/logar") """
         
