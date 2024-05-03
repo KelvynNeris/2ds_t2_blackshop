@@ -26,7 +26,7 @@ def cadastro():
         cpf = request.form["cpf"]
         conexao = sqlite3.connect("shopbck.sqlite")
         cursor = conexao.cursor()
-        cursor.execute(f"INSERT INTO tb_cliente VALUES('{nome}', {cpf}, '{telefone}', '{endereco}, '{numero}', '{email}')")
+        cursor.execute(f"INSERT INTO tb_cliente VALUES('{nome}', {cpf}, '{telefone}', '{endereco}, '{email}')")
         conexao.commit()
         conexao.close()
 
