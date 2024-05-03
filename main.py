@@ -30,7 +30,7 @@ def cadastro():
         if usuario.cadastrar(nome, cpf, telefone, endereco, email, cpf):
             print("CADASTRO EFEUTADO COM SUCESSO")
         else:
-            print("FALAHA AO CADASTRAR")
+            print("FALHA AO CADASTRAR")
      
        
     
