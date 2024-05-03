@@ -22,7 +22,6 @@ def cadastro():
         cpf = request.form["cpf"]
         telefone = request.form["telefone"]
         endereco = request.form["endereco"]
-        numero = request.form["numero"]
         email = request.form["email"]
         cpf = request.form["cpf"]
         conexao = sqlite3.connect("shopbck.sqlite")
