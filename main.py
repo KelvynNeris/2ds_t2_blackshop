@@ -24,13 +24,15 @@ def cadastro():
         endereco = request.form["endereco"]
         email = request.form["email"]
         cpf = request.form["cpf"]
-        conexao = sqlite3.connect("shopbck.sqlite")
-        cursor = conexao.cursor()
-        cursor.execute(f"INSERT INTO tb_cliente VALUES('{nome}', {cpf}, '{telefone}', '{endereco}, '{email}')")
-        conexao.commit()
-        conexao.close()
 
-        return render_template("logar.html")
+        usuario = Usuario()
+
+        if usuario.cadastrar(nome, cpf, telefone, endereco, email, cpf):
+            return render_template("logar.html"), 200
+        else:
+            return ("/cadastro"), 400
+     
+       
     
 @app.route('/logar', methods = ['GET','POST'])
 def logar():
