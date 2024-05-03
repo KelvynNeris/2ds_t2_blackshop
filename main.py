@@ -7,6 +7,10 @@ from usuario import Usuario
 
 app = Flask(__name__)
 
+@app.route("/")
+def index():
+    return render_template("index.html")
+    
 
 # Define cadastro route
 @app.route("/cadastro", methods = ["GET", "POST"])
