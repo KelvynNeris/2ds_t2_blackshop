@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, session
 from usuario import Usuario
 
 
@@ -32,9 +32,8 @@ def cadastro():
         else:
             print("FALHA AO CADASTRAR")
      
-       
-    
-""" @app.route('/logar', methods = ['GET','POST'])
+           
+@app.route('/logar', methods = ['GET','POST'])
 def logar():
     if request.method =='GET':
         return render_template('login.html')
@@ -50,7 +49,7 @@ def logar():
             
         else:
             session.clear()
-            return redirect("/logar") """
+            return redirect("/logar") 
 
 
 app.run(debug=True)
