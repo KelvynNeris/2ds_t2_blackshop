@@ -28,9 +28,9 @@ def cadastro():
         usuario = Usuario()
 
         if usuario.cadastrar(nome, cpf, telefone, endereco, email, cpf):
-            print("CADASTRO EFEUTADO COM SUCESSO")
+            return "CADASTRO EFEUTADO COM SUCESSO"
         else:
-            print("FALHA AO CADASTRAR")
+            return "FALHA AO CADASTRAR"
      
            
 @app.route('/logar', methods = ['GET','POST'])
