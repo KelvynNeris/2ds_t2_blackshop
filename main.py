@@ -12,7 +12,7 @@ def index():
     return render_template("index.html")
     
 
-# Define cadastro route
+# Define cadastro route 
 @app.route("/cadastro", methods = ["GET", "POST"])
 def cadastro():
     if request.method == 'GET':
