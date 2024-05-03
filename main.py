@@ -28,7 +28,7 @@ def cadastro():
         usuario = Usuario()
 
         if usuario.cadastrar(nome, cpf, telefone, endereco, email, cpf):
-            return render_template("logar.html"), 200
+            print("CADASTRO EFEUTADO COM SUCESSO")
         else:
             return ("/cadastro"), 400
      
