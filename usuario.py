@@ -6,8 +6,11 @@ class Usuario:
         self.tel = None
         self.nome = None
         self.senha = None
+        self.endereco = None
+        self.cpf = None
+        self.email = None
         self.logado = False
-    def cadastrar(self, telefone, nome, senha):
+    def cadastrar(self, telefone, nome, senha, cpf, endereco, email):
         senha = sha256(senha.encode()).hexdigest()
         try:
             mydb = Conexao.conectar()
@@ -16,13 +19,16 @@ class Usuario:
             mycursor = mydb.cursor()
 
             
-            sql = f"INSERT INTO tb_usuario (tel, nome, senha) VALUES ('{telefone}', '{nome}', '{senha}')"
+            sql =(f"INSERT INTO tb_cliente VALUES('{nome}', {cpf}, '{telefone}', '{endereco}, '{email}')")
             
             mycursor.execute(sql)
             
             self.tel = telefone
             self.nome = nome
             self.senha = senha
+            self.endereco = endereco
+            self.cpf = cpf
+            self.email = email
             self.logado = True
 
 
@@ -30,7 +36,7 @@ class Usuario:
 
             print(mycursor.rowcount, "registro inserido")
 
-            mycursor.execute("SELECT tel, nome FROM tb_usuario")
+            mycursor.execute("SELECT email, nome FROM tb_cliente")
 
             ver = mycursor.fetchall()
 
