@@ -11,8 +11,8 @@ class Usuario:
         self.email = None
         self.logado = False
     def cadastrar(self, nome, telefone, cpf, endereco, email, senha):
-            senha = sha256(senha.encode()).hexdigest()
-        # try:
+        senha = sha256(senha.encode()).hexdigest()
+        try:
             mydb = Conexao.conectar()
 
 
@@ -35,5 +35,27 @@ class Usuario:
             mydb.commit()
             mydb.close()
             return True
-        # except:
-        #     return False
+        except:
+            return False
+        
+    def logar(self, email, senha):
+                # criptografa a senha
+                senha = sha256(senha.encode()).hexdigest()
+
+                mydb = Conexao.conectar()
+
+                mycursor = mydb.cursor()
+
+                sql = f"SELECT telefone, nome_cliente, senha FROM tb_cliente WHERE email='{email}' AND senha='{senha}'"
+                
+                mycursor.execute(sql)
+            
+                resultado = mycursor.fetchone()
+                print(resultado)
+                if not resultado == None:
+                    self.logado = True
+                    self.nome = resultado[1]
+                    self.tel = resultado[0]
+                    self.senha = resultado[2]
+                else:
+                    self.logado = False
