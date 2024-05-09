@@ -10,7 +10,7 @@ class Usuario:
         self.cpf = None
         self.email = None
         self.logado = False
-    def cadastrar(self, telefone, nome_cliente, senha, endereco, cpf, email):
+    def cadastrar(self, telefone, nome, senha, endereco, cpf, email):
         senha = sha256(senha.encode()).hexdigest()
         try:
             mydb = Conexao.conectar()
@@ -19,12 +19,12 @@ class Usuario:
             mycursor = mydb.cursor()
 
             
-            sql = f"INSERT INTO tb_cliente (telefone, nome_cliente, senha, cpf, endereco, email) VALUES ('{telefone}', '{nome_cliente}', '{senha}', '{cpf}', '{endereco}', '{email}')"
+            sql = f"INSERT INTO tb_cliente (telefone, nome_cliente, senha, cpf, endereco, email) VALUES ('{telefone}', '{nome}', '{senha}', '{cpf}', '{endereco}', '{email}')"
             
             mycursor.execute(sql)
             
             self.tel = telefone
-            self.nome = nome_cliente
+            self.nome = nome
             self.senha = senha
             self.cpf = cpf
             self.endereco = endereco
