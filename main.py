@@ -27,7 +27,7 @@ def cadastro():
 
         usuario = Usuario()
 
-        if usuario.cadastrar(nome, cpf, telefone, endereco, email,senha):
+        if usuario.cadastrar(nome, telefone, cpf, endereco, email,senha):
             return "CADASTRO EFEUTADO COM SUCESSO"
         else:
             return "FALHA AO CADASTRAR"
