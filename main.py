@@ -50,4 +50,6 @@ def logar():
         else:
             session.clear()
             return redirect("/logar")
+
+app.run(debug= True)
         
