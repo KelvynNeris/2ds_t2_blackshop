@@ -11,15 +11,15 @@ class Usuario:
         self.email = None
         self.logado = False
     def cadastrar(self, nome, telefone, cpf, endereco, email, senha):
-        senha = sha256(senha.encode()).hexdigest()
-        try:
+            senha = sha256(senha.encode()).hexdigest()
+        # try:
             mydb = Conexao.conectar()
 
 
             mycursor = mydb.cursor()
 
             
-            sql =(f"INSERT INTO tb_cliente VALUES('{nome}', {telefone}, '{cpf}', '{endereco}, '{email}', '{senha}')")
+            sql = f"INSERT INTO tb_cliente VALUES('{nome}', {telefone}, '{cpf}', '{endereco}', '{email}', '{senha}')"
             
             mycursor.execute(sql)
             
@@ -33,16 +33,7 @@ class Usuario:
 
 
             mydb.commit()
-
-            print(mycursor.rowcount, "registro inserido")
-
-            mycursor.execute("SELECT email, nome FROM tb_cliente")
-
-            ver = mycursor.fetchall()
-
-            print(ver)
-
             mydb.close()
             return True
-        except:
-            return False
+        # except:
+        #     return False
