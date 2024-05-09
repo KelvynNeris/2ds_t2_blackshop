@@ -6,11 +6,7 @@ import sqlite3
 
 
 app = Flask(__name__)
-conexao = sqlite3.connect("shopbck.sqlite")
-cursor = conexao.cursor()
-cursor.execute()
-conexao.commit()
-conexao.close()
+
 
 # Define cadastro route
 @app.route("/cadastro", methods = ["GET", "POST"])
@@ -22,16 +18,17 @@ def cadastro():
         cpf = request.form["cpf"]
         telefone = request.form["telefone"]
         endereco = request.form["endereco"]
-        numero = request.form["numero"]
         email = request.form["email"]
         cpf = request.form["cpf"]
-        conexao = sqlite3.connect("shopbck.sqlite")
-        cursor = conexao.cursor()
-        cursor.execute(f"INSERT INTO tb_cliente VALUES('{nome}', {cpf}, '{telefone}', '{endereco}, '{numero}', '{email}')")
-        conexao.commit()
-        conexao.close()
+        senha = request.form["senha"]
+        usuario = Usuario()
 
-        return render_template("logar.html")
+    if usuario.cadastrar(telefone, nome ,senha, cpf, endereco, email):
+        return 'CADASTRADO COM SUCESSO'
+    else:
+        return 'FALHA AO CADASTRAR'
+
+        # return render_template("logar.html")
     
 @app.route('/logar', methods = ['GET','POST'])
 def logar():
