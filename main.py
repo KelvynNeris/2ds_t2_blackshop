@@ -6,6 +6,7 @@ from usuario import Usuario
 
 
 app = Flask(__name__)
+app.secret_key = 'sua_chave_secreta'
 
 @app.route("/")
 def index():
@@ -45,7 +46,7 @@ def logar():
         if  usuario.logado == True:
             session['usuario_logado'] = {"nome": usuario.nome,
                                     "email": usuario.email}
-            return redirect("/index")
+            return redirect("/")
             
         else:
             session.clear()
