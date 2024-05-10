@@ -50,7 +50,15 @@ def logar():
             
         else:
             session.clear()
-            return redirect("/logar") 
+            return redirect("/logar")
+@app.route("/produtos", methods = ['GET', 'POST'])
+def inserir_produto():
+    senhaVendedor =  request.form['senhaV']
+    if senhaVendedor == 'EuPossoInserirProdutos':
+        return redirect("/produtos")
+    else:
+        import warnings
+        return warnings('VOCÊ NÃO TEM ACESSO A ESSA PÁGINA')
 
 
 app.run(debug=True)
