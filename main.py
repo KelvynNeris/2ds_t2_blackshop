@@ -51,14 +51,33 @@ def logar():
         else:
             session.clear()
             return redirect("/logar")
-@app.route("/produtos", methods = ['GET', 'POST'])
-def inserir_produto():
-    senhaVendedor =  request.form['senhaV']
+
+@app.route("/verificar", methods = ['GET', 'POST'])
+def verificar_vendedor():
+    mensagem_erro = ""
+    senhaVendedor =  'EuPossoInserirProduto'
     if senhaVendedor == 'EuPossoInserirProdutos':
-        return redirect("/produtos")
+        return render_template("venda.html", mensagem_erro = mensagem_erro)
     else:
-        import warnings
-        return warnings('VOCÊ NÃO TEM ACESSO A ESSA PÁGINA')
+        mensagem_erro = "você não tem permissão para acessar esta página"
+        session.clear()
+        return redirect("/verificar", mensagem_erro = mensagem_erro)
+@app.route("/produtos", methods=['GET','POST'])
+def inserir_produto():
+    if request.method == 'GET':
+        return render_template("/venda")
+    else:
+        imagem_url = request.form['img']
+        nome_produto = request.form['nome']
+        preco_produto = request.form["preco"]
+
+        usuario = Usuario()
+
+        if usuario.cd_produtos(imagem_url, nome_produto, preco_produto):
+            return redirect("/")
+        else: 
+            return "ERRO AO INSERIR PRODUTO"
+
 
 
 app.run(debug=True)
