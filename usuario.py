@@ -9,6 +9,9 @@ class Usuario:
         self.endereco = None
         self.cpf = None
         self.email = None
+        self.imagem = None
+        self.preco = None
+        self.nomeP = None
         self.logado = False
     def cadastrar(self, nome, telefone, cpf, endereco, email, senha):
         senha = sha256(senha.encode()).hexdigest()
@@ -59,3 +62,21 @@ class Usuario:
                     self.senha = resultado[2]
                 else:
                     self.logado = False
+    def inserir_produto(self, nomeP, preco, imagem):
+        try:
+            mydb = Conexao.conectar
+            mycursor = mydb.cursor()
+
+            sql = f"INSERT INTO tb_cliente VALUES('{nomeP}, '{preco}', '{imagem}')"
+
+            mycursor.execute(sql)
+
+            self.imagem = imagem
+            self.preco = preco
+            self.nomeP = nomeP
+
+            mydb.comit()
+            mydb.close()
+            return True
+        except:
+            return False
