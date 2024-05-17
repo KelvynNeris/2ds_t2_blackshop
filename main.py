@@ -69,13 +69,14 @@ def inserir_produtos():
     if request.method == 'GET':
         return render_template("venda.html")
     else:
-        imagem_url = request.form['img']
-        nome_produto = request.form['nome']
+        imagem_url = request.form["img"]
+        nome_produto = request.form["nome"]
         preco_produto = request.form["preco"]
+        categoria = request.form["categoria"]
 
         usuario = Usuario()
 
-        if usuario.inserir_produto(imagem_url, nome_produto, preco_produto):
+        if usuario.inserir_produto(imagem_url, nome_produto, preco_produto, categoria):
             return redirect("/")
         else: 
             return "ERRO AO INSERIR PRODUTO"
