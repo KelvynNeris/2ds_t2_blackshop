@@ -6,5 +6,10 @@ class Sistema:
         mydb =  Conexao.conectar()
         mycursor = mydb.cursor()
 
-        sql = f"SELECT * from tb_produtos nome_produto"
+        sql = f"SELECT * from tb_produtos where categoria = '{filtro}'"
+
+        mycursor.execute(sql)
+        mydb.commit()
+        mydb.close()
+        return True
         
