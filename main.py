@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, session
 from usuario import Usuario
+from sistema import Sistema
 
 
 
@@ -80,6 +81,26 @@ def inserir_produtos():
             return redirect("/")
         else: 
             return "ERRO AO INSERIR PRODUTO"
+        
+@app.route("/categoria", ['GET', 'POST'])
+def categoria():
+    if request.method == 'GET':
+        return render_template("categoria.html")
+    else:
+    
+        filtrado = request.name['filtro']
+        sistema = Sistema()
+
+        if sistema.filtro(filtrado):
+
+@app.route("/teste/<categoria>")
+def catgoria(categoria):
+    
+    return render_template("categoria.html")
+
+
+   
+
 
 
 app.run(debug=True)
