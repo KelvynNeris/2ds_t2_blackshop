@@ -62,12 +62,12 @@ class Usuario:
                     self.senha = resultado[2]
                 else:
                     self.logado = False
-    def inserir_produto(self, nomeP, preco, imagem):
+    def inserir_produto(self, imagem, nomeP, preco, categoria):
         # try:
             mydb = Conexao.conectar()
             mycursor = mydb.cursor()
 
-            sql = f"INSERT INTO tb_produtos VALUES('{imagem}', '{nomeP}', '{preco}')"
+            sql = f"INSERT INTO tb_produtos (imagem_produto, nome_produto, preco) VALUES('{imagem}', '{nomeP}', '{preco}', '{categoria}')"
 
             mycursor.execute(sql)
 
@@ -76,7 +76,7 @@ class Usuario:
             self.nomeP = nomeP
             self.logado = True
 
-            mydb.comit()
+            mydb.commit()
             mydb.close()
             return True
         # except:
