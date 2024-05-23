@@ -65,7 +65,7 @@ def verificar_vendedor():
         session.clear()
         return redirect("/verificar", mensagem_erro = mensagem_erro) """
     
-@app.route("/produtos", methods=['GET','POST'])
+@app.route("/inserir_produtos", methods=['GET','POST'])
 def inserir_produtos():
     if request.method == 'GET':
         return render_template("venda.html")
@@ -82,21 +82,26 @@ def inserir_produtos():
         else: 
             return "ERRO AO INSERIR PRODUTO"
         
-@app.route("/categoria", ['GET', 'POST'])
-def categoria():
-    if request.method == 'GET':
-        return render_template("categoria.html")
-    else:
+@app.route("/produtos")
+def compras():
+   sistema = Sistema()
+   lista_categoria = sistema.exibir_produtos()
+   render_template("produtos.html", lista_categoria = lista_categoria)
     
-        filtrado = request.name['filtro']
-        sistema = Sistema()
 
-        if sistema.filtro(filtrado):
+    
 
-@app.route("/teste/<categoria>")
+
+
+""" 
+@app.route("/categoria/<categoria>")
 def catgoria(categoria):
+
+    sistema = Sistema()
+
+    if sistema.filtro(filtro = categoria):
+        return render_template("comnpras.html") """
     
-    return render_template("categoria.html")
 
 
    
