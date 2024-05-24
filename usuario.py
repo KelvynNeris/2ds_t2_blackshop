@@ -64,12 +64,12 @@ class Usuario:
                     self.senha = resultado[2]
                 else:
                     self.logado = False
-    def inserir_produto(self, imagem, nomeP, preco, categoria):
+    def inserir_produto(self, imagem, nomeP, preco, categoria, descricao):
         # try:
             mydb = Conexao.conectar()
             mycursor = mydb.cursor()
 
-            sql = f"INSERT INTO tb_produtos (imagem_produto, nome_produto, preco, categoria, descricao) VALUES('{imagem}', '{nomeP}', {preco}, '{categoria}', '{descricao})"
+            sql = f"INSERT INTO tb_produtos (imagem_produto, nome_produto, preco, categoria, descricao) VALUES('{imagem}', '{nomeP}', {preco}, '{categoria}', '{descricao}')"
 
             mycursor.execute(sql)
 

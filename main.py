@@ -94,14 +94,16 @@ def compras():
 
 
 
-""" 
+
 @app.route("/categoria/<categoria>")
 def catgoria(categoria):
 
     sistema = Sistema()
-
+    lista_filtro = sistema.filtro()
     if sistema.filtro(filtro = categoria):
-        return render_template("comnpras.html") """
+        return render_template("produtos.html",  lista_filtro = lista_filtro)
+    else:
+        return 'PRODUTO NÃO ENCONTRADO'
     
 
 

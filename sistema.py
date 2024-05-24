@@ -9,9 +9,22 @@ class Sistema:
         sql = f"SELECT * from tb_produtos where categoria = '{filtro}'"
 
         mycursor.execute(sql)
-        mydb.commit()
+        resultado = mycursor.fetchall()
+       
+        lista_filtro = []
+
+        for filtro in resultado:
+            lista_filtro.append({
+                'nome_produto': filtro[1],
+                'preco': filtro[2],
+                'imagem_produto': filtro[3]
+            })
         mydb.close()
-        return True
+        if lista_filtro:
+            return lista_filtro
+        else:
+            return []
+        
     
 
     def exibir_produtos(self):
