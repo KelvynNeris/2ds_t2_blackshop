@@ -74,10 +74,11 @@ def inserir_produtos():
         nome_produto = request.form["nome"]
         preco_produto = request.form["preco"]
         categoria = request.form["categoria"]
+        descricao = request.form["descricao"]
 
         usuario = Usuario()
 
-        if usuario.inserir_produto(imagem_url, nome_produto, preco_produto, categoria):
+        if usuario.inserir_produto(imagem_url, nome_produto, preco_produto, categoria, descricao):
             return redirect("/")
         else: 
             return "ERRO AO INSERIR PRODUTO"
@@ -86,7 +87,7 @@ def inserir_produtos():
 def compras():
    sistema = Sistema()
    lista_categoria = sistema.exibir_produtos()
-   render_template("produtos.html", lista_categoria = lista_categoria)
+   return   render_template("produtos.html", lista_categoria = lista_categoria)
     
 
     
