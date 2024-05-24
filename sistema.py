@@ -32,4 +32,7 @@ class Sistema:
                 'imagem_produto': categoria[3]
             })
         mydb.close()
-        return (lista_categorias)
+        if lista_categorias:
+            return lista_categorias
+        else:
+            return []
