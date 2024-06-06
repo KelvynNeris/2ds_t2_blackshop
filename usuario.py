@@ -15,6 +15,7 @@ class Usuario:
         self.categoria = None
         self.descricao = None
         self.logado = False
+
     def cadastrar(self, nome, telefone, cpf, endereco, email, senha):
         senha = sha256(senha.encode()).hexdigest()
         try:
@@ -51,7 +52,7 @@ class Usuario:
 
                 mycursor = mydb.cursor()
 
-                sql = f"SELECT telefone, nome_cliente, senha FROM tb_cliente WHERE email='{email}' AND senha='{senha}'"
+                sql = f"SELECT telefone, nome_cliente, senha, cpf FROM tb_cliente WHERE email='{email}' AND senha='{senha}'"
                 
                 mycursor.execute(sql)
             
@@ -59,6 +60,7 @@ class Usuario:
                 print(resultado)
                 if not resultado == None:
                     self.logado = True
+                    self.cpf = resultado[3]
                     self.nome = resultado[1]
                     self.tel = resultado[0]
                     self.senha = resultado[2]

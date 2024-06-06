@@ -2,7 +2,7 @@ from conexao import Conexao
 
 
 class Sistema:
-    def filtro(filtro):
+    def filtro(self, filtro):
         mydb =  Conexao.conectar()
         mycursor = mydb.cursor()
 
@@ -17,8 +17,9 @@ class Sistema:
             lista_filtro.append({
                 'nome_produto': filtro[1],
                 'preco': filtro[2],
-                'imagem_produto': filtro[3]
-            })
+                'imagem_produto': filtro[3],
+                'descricao': filtro[5]            
+        })
         mydb.close()
         if lista_filtro:
             return lista_filtro
@@ -42,10 +43,30 @@ class Sistema:
             lista_categorias.append({
                 'nome_produto': categoria[1],
                 'preco': categoria[2],
-                'imagem_produto': categoria[3]
+                'imagem_produto': categoria[3],
+                'categoria': categoria[4],
+                'descricao': categoria[5]
             })
         mydb.close()
         if lista_categorias:
             return lista_categorias
         else:
             return []
+    
+
+    def inserir_carrinho(self):
+        mydb =  Conexao.conectar()
+        mycursor = mydb.cursor()
+
+        sql = f"select id_produto from tb_produto"
+        
+        resultado = mycursor.fetchall()
+        lista_categorias = []
+
+        lista_categorias.append(resultado)
+
+        
+
+        mycursor.execute(sql)
+
+        mydb.close()

@@ -46,7 +46,8 @@ def logar():
         usuario.logar(email, senha)
         if  usuario.logado == True:
             session['usuario_logado'] = {"nome": usuario.nome,
-                                    "email": usuario.email}
+                                    "email": usuario.email,
+                                    "cpf": usuario.cpf}
             return redirect("/")
             
         else:
@@ -85,16 +86,20 @@ def inserir_produtos():
         
 @app.route("/produtos")
 def compras():
-   sistema = Sistema()
-   lista_categoria = sistema.exibir_produtos()
-   return   render_template("produtos.html", lista_categoria = lista_categoria)
-    
+   
+    filtro = request.args.get['text']
+
+    if filtro == None   :
+
+        sistema = Sistema()
+        lista_categoria = sistema.exibir_produtos()
+        return   render_template("produtos.html", lista_categoria = lista_categoria)
+    else:
+        sistema = Sistema()
+        lista_filtro = sistema.filtro(filtro)
+        return render_template("produtos.html",  lista_filtro = lista_filtro)
 
     
-
-
-
-
 @app.route("/categoria/<categoria>")
 def catgoria(categoria):
 
@@ -104,6 +109,12 @@ def catgoria(categoria):
         return render_template("produtos.html",  lista_filtro = lista_filtro)
     else:
         return 'PRODUTO NÃO ENCONTRADO'
+    
+@app.route("/carrinho")
+def carrinho():
+    cpf_cliente = session['usuario.logado']['cpf']
+    
+    
     
 
 

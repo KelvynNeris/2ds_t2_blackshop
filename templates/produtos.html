@@ -14,7 +14,7 @@
             <img src="/static/img/bLACKshop.png" alt="logo">
         </div>
         <form action="#" method="POST">
-          <input type="text" placeholder="Procure seu produto ..." name="text" id="text">
+          <input type="text" placeholder="Informe a categoria do produto" name="text" id="text">
            <button type="submit">Pesquisar</button>
         </form>
     
@@ -49,65 +49,6 @@
       </ul>
   </nav>
 </header>
-   <!--  <section class="cont-produtos">
-        <div class="produtos">
-          <div class="produto">
-            <img src="" alt="">
-            <h2>Título 1</h2>
-            <p>RS 100,00</p>
-          </div>
-          <div class="produto">
-            <img src="" alt="">
-            <h2>Título 2</h2>
-            <p>RS 100,00</p>
-          </div>
-          <div class="produto">
-            <img src="" alt="">
-            <h2>Título 3</h2>
-            <p>RS 100,00</p>
-          </div>
-          <div class="produto">
-            <img src="" alt="">
-            <h2>Título 4</h2>
-            <p>RS 100,00</p>
-          </div>
-          <div class="produto">
-            <img src="" alt="">
-            <h2>Título 5</h2>
-            <p>RS 100,00</p>
-          </div>
-          <div class="produto">
-            <img src="" alt="">
-            <h2>Título 6</h2>
-            <p>RS 100,00</p>
-          </div>
-          <div class="produto">
-            <img src="" alt="">
-            <h2>Título 7</h2>
-            <p>RS 100,00</p>
-          </div>
-          <div class="produto">
-            <img src="" alt="">
-            <h2>Título 8</h2>
-            <p>RS 100,00</p>
-          </div>
-          <div class="produto">
-            <img src="" alt="">
-            <h2>Título 9</h2>
-            <p>RS 100,00</p>
-          </div>
-          <div class="produto">
-            <img src="" alt="">
-            <h2>Título 10</h2>
-            <p>RS 100,00</p>
-          </div>
-          <div class="produto">
-            <img src="" alt="">
-            <h2>Título 10</h2>
-            <p>RS 100,00</p>
-          </div>
-        </div>
-    </section> -->
 
     <table>
       <thead>
@@ -122,6 +63,7 @@
             <td>{{ compra.nome_produto }}</td>
             <td>{{ compra.preco }}</td>
             <td><img src="{{ compra.imagem_produto }}" alt=""></td>
+            <td>{{ compra.descricao }}</td>
           </tr>
         {% endfor %}
       </tbody>
