@@ -87,38 +87,59 @@ def inserir_produtos():
 @app.route("/produtos")
 def compras():
    
-    filtro = request.args.get['text']
+    # filtro = request.args.get['text']
 
-    if filtro == None   :
+    # if filtro == None   :
 
         sistema = Sistema()
         lista_categoria = sistema.exibir_produtos()
         return   render_template("produtos.html", lista_categoria = lista_categoria)
-    else:
-        sistema = Sistema()
-        lista_filtro = sistema.filtro(filtro)
-        return render_template("produtos.html",  lista_filtro = lista_filtro)
+    # else:
+    #     sistema = Sistema()
+    #     lista_filtro = sistema.filtro(filtro)
+    #     return render_template("produtos.html",  lista_filtro = lista_filtro)
 
     
 @app.route("/categoria/<categoria>")
 def catgoria(categoria):
 
     sistema = Sistema()
-    lista_filtro = sistema.filtro()
-    if sistema.filtro(filtro = categoria):
-        return render_template("produtos.html",  lista_filtro = lista_filtro)
-    else:
-        return 'PRODUTO NÃO ENCONTRADO'
+    lista_filtro = sistema.filtro(categoria)
+    return render_template("produtos-categoria.html",  lista_filtro = lista_filtro)
+
     
+@app.route("/inserir_carrinho", methods=['GET', 'POST'])
+def inserir_carrinho():
+    if request.method == 'GET':
+        return render_template("carrinho.html")
+    else:
+
+        btn_carrinho = request.form['btn-carrinho']
+        cpf_cliente = session['usuario.logado']['cpf']
+
+        sistema=Sistema()
+        if sistema.inserir_carrinho(btn_carrinho, cpf_cliente):
+            return render_template("carrinho.html")
+        else:
+            return "ERRO AO INSERIR PRODUTO AO CARRINHO"
 @app.route("/carrinho")
 def carrinho():
-    cpf_cliente = session['usuario.logado']['cpf']
-    
-    
-    
 
+    sistema = Sistema()
+    lista_carrinho = sistema.filtro(id)
+    return render_template("carrinho.html",  lista_carrinho = lista_carrinho)
 
-   
+    
+@app.route("/compra", methods=['GET', 'POST'])
+def comprar():
+    if request.method == 'GET':
+        return render_template("produto-unico.html")
+    else:
+        btn_produto = request.form['btn-produto']
+        sistema=Sistema()
+        id_prd = sistema.exibir_carrinho(btn_produto)
+        return render_template("produto-unico.html", id_prd = id_prd)
+
 
 
 

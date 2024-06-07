@@ -67,7 +67,7 @@ class Usuario:
                 else:
                     self.logado = False
     def inserir_produto(self, imagem, nomeP, preco, categoria, descricao):
-        # try:
+        try:
             mydb = Conexao.conectar()
             mycursor = mydb.cursor()
 
@@ -85,5 +85,6 @@ class Usuario:
             mydb.commit()
             mydb.close()
             return True
-        # except:
-        #     return False
+        except:
+          return False
+    
