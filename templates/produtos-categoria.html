@@ -47,8 +47,9 @@
   </nav>
 </header>
     <section class="cont-produtos">
+
         <div class="produtos">
-          {% for registro in lista_categoria %}
+          {% for registro in lista_filtro %}
             <a class="produto">
               <div class="imagem">
                 <img src="{{ registro.imagem_produto }}" alt="">

@@ -18,7 +18,7 @@ header{
 .content-header{
 
     padding: 0 20px 0 20px;
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     width: 100%;
     height: 70%;
     display: flex;
@@ -55,24 +55,6 @@ header{
     text-align: center;
     color: rgb(0, 0, 0);
     text-decoration: none;
-}
-
-.content-header input{
-
-    color: white;
-    background-color: rgb(0, 0, 0);
-    padding: 10px;
-    border-style: none;
-    border-radius: 5px;
-    height: 40px;
-    width: 400px;
-    font-size: 12px;
-    transition: transform 0.6s ease;
-}
-
-.content-header input:focus{
-
-    transform: scale(1.1);
 }
 
 nav{
@@ -113,13 +95,29 @@ li{
 li:hover{
 
     transform: scale(1.1);
-    background-color: rgb(5, 10, 146);
 
 }
 
 li img{
 
     height: 170%;
+}
+
+nav ul li a{
+
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+}
+
+nav ul li a:hover{
+
+    color: white;
+    text-decoration: none;
 }
 
 main{
@@ -165,19 +163,22 @@ section{
 
 .card{
 
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
     transition: transform 0.6s ease;
     cursor: pointer;
     width: 400px;
     height: 500px;
     padding: 20px;
-    background-color: rgb(255, 255, 255);
+    background: rgb(236, 236, 236);
     align-items: center;
     flex-direction: column;
     display: flex;
+    margin-bottom: 50px;
 }
 
 .card:hover{
 
+    box-shadow: rgba(8, 70, 255, 0.644) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
     transform: scale(1.1);
 }
 
@@ -250,7 +251,7 @@ section{
     text-align: center;
     background-color: white;
     width: 300px;
-    height: 100px;
+    height: 80px;
 }
 
 .ver:hover{
@@ -276,13 +277,18 @@ section{
     padding: 10px;
     gap: 20px;
     background-color: rgb(146, 146, 146);
-    width: 80%;
+    width: 85%;
     height: 80%;
 }
 
 .bloco{
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
     cursor: pointer;
+    font-weight: 300;
     background-color: white;
     width: 200px;
     height: 200px;
@@ -293,3 +299,173 @@ section{
 
     transform: scale(1.1);
 }
+
+footer{
+
+    background-color: white;
+    width: 100vw;
+    height: 40vh;
+}
+
+.cont-footer{
+
+    font-size: 14px;
+    align-items: center;
+    justify-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+
+.div-footer{
+
+    height: 70%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+}
+
+.div-footer p{
+
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+}
+
+.baixo-footer{
+
+    font-size: 10px;
+    grid-row: 2;
+    grid-column: 1/4;
+}
+
+.card-ui {
+    width: fit-content;
+    height: fit-content;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 25px 25px;
+    gap: 20px;
+  }
+  
+  /* for all social containers*/
+  .socialContainer {
+    width: 52px;
+    height: 52px;
+    border-radius: 100%;
+    background-color: rgb(44, 44, 44);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition-duration: .3s;
+  }
+  /* instagram*/
+  .containerOne:hover {
+    background-color: #d62976;
+    transition-duration: .3s;
+  }
+  /* twitter*/
+  .containerTwo:hover {
+    background-color: #00acee;
+    transition-duration: .3s;
+  }
+  /* linkdin*/
+  .containerThree:hover {
+    background-color: #0072b1;
+    transition-duration: .3s;
+  }
+  /* Whatsapp*/
+  .containerFour:hover {
+    background-color: #128C7E;
+    transition-duration: .3s;
+  }
+  
+  .socialContainer:active {
+    transform: scale(0.9);
+    transition-duration: .3s;
+  }
+  
+  .socialSvg {
+    width: 17px;
+  }
+  
+  .socialSvg path {
+    fill: rgb(255, 255, 255);
+  }
+  
+  .socialContainer:hover .socialSvg {
+    animation: slide-in-top 0.3s both;
+  }
+  
+  @keyframes slide-in-top {
+    0% {
+      transform: translateY(-50px);
+      opacity: 0;
+    }
+  
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  .input {
+    width: 400px;
+    border-radius: 10px;
+    outline: 2px solid #000000;
+    border: 0;
+    color: white;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: #000000;
+    outline-offset: 3px;
+    padding: 10px 1rem;
+    transition: 0.25s;
+  }
+  
+  .input:focus {
+
+    color: black;
+    outline-offset: 5px;
+    background-color: #fff
+  }
+
+  ul li::before {
+    position: absolute;
+    content: "";
+    background: rgb(5, 10, 146);
+    width: 150px;
+    height: 200px;
+    z-index: -1;
+    border-radius: 50%;
+  }
+
+  ul li:before {
+    top: 100%;
+    left: 100%;
+    transition: 0.5s all;
+  }
+  
+  ul li:hover::before {
+    top: -30px;
+    left: -30px;
+  }
+  
+  html a{
+
+    color: black;
+    text-decoration: none;
+  }
+
+  html a:hover{
+
+    color: black;
+    text-decoration: none;
+  }

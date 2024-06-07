@@ -39,7 +39,7 @@
     <nav>
       <ul class="kanit-thin">
           <li><a href="/#categoria">Categoria</a></li>
-          <li><a href="/inserir_produtos">Vender</a></li>
+          <li><a href="">Vender</a></li>
           <li><a href="/logar">Login</a></li>
           <li><a href="/cadastro">Cadastro</a></li>
           <li><a href=""><img src="/static/img/carro-removebg-preview.png" alt="carrinho"></a></li>
@@ -48,16 +48,66 @@
 </header>
     <section class="cont-produtos">
         <div class="produtos">
+          <div class="produto">
+            <img src="" alt="">
+            <h2>Título 1</h2>
+            <p>RS 100,00</p>
+          </div>
+          <div class="produto">
+            <img src="" alt="">
+            <h2>Título 2</h2>
+            <p>RS 100,00</p>
+          </div>
+          <div class="produto">
+            <img src="" alt="">
+            <h2>Título 3</h2>
+            <p>RS 100,00</p>
+          </div>
+          <div class="produto">
+            <img src="" alt="">
+            <h2>Título 4</h2>
+            <p>RS 100,00</p>
+          </div>
+          <div class="produto">
+            <img src="" alt="">
+            <h2>Título 5</h2>
+            <p>RS 100,00</p>
+          </div>
+          <div class="produto">
+            <img src="" alt="">
+            <h2>Título 6</h2>
+            <p>RS 100,00</p>
+          </div>
+          <div class="produto">
+            <img src="" alt="">
+            <h2>Título 7</h2>
+            <p>RS 100,00</p>
+          </div>
+          <div class="produto">
+            <img src="" alt="">
+            <h2>Título 8</h2>
+            <p>RS 100,00</p>
+          </div>
+          <div class="produto">
+            <img src="" alt="">
+            <h2>Título 9</h2>
+            <p>RS 100,00</p>
+          </div>
+          <div class="produto">
+            <img src="" alt="">
+            <h2>Título 10</h2>
+            <p>RS 100,00</p>
+          </div>
+          <div class="produto">
+            <img src="" alt="">
+            <h2>Título 10</h2>
+            <p>RS 100,00</p>
+          </div>
           {% for registro in lista_categoria %}
             <a class="produto">
-              <div class="imagem">
-                <img src="{{ registro.imagem_produto }}" alt="">
-              </div>
-              <h2>{{ registro.nome_produto }}</h2>
-              <p>R$ {{ registro.preco }},00</p>
-              <div class="carrinho">
-                <img src="/static/img/carro-removebg-preview.png" alt="">
-              </div>
+              <img src="{{ registro[imagem_produto] }}" alt="">
+              <h2>{{ registro[nome_produto] }}</h2>
+              <p>{{ registro[preco] }}</p>
             </a>
           {% endfor %}
         </div>
