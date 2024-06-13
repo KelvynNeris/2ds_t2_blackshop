@@ -49,13 +49,13 @@
     <section class="cont-produtos">
         <div class="produtos">
           {% for registro in lista_categoria %}
-            <form class="produto" action="/compra" method="POST">
+            <form class="produto" action="#" method="POST">
               <div class="imagem">
                 <img src="{{ registro.imagem_produto }}" alt="">
               </div>
               <h2>{{ registro.nome_produto }}</h2>
               <p>R$ {{ registro.preco }},00</p>
-              <a href="/compra"><button name="btn-produto" value="{{registro.id_produto}}" type="submit" class="carrinho"><img src="/static/img/carro-removebg-preview.png" alt=""></button></a>
+              <a href="/compra"></a><button type="submit" class="carrinho"><img src="/static/img/carro-removebg-preview.png" alt=""></button></a>
             </form>
           {% endfor %}
         </div>

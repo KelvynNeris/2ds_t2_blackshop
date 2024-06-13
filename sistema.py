@@ -55,19 +55,23 @@ class Sistema:
             })
         mydb.close()
         if lista_categorias:
-            return lista_categorias
+            return lista_categorias 
         else:
             return []
     
    
-    def inserir_carrinho(self, cpf, id_produto):
-        mydb =  Conexao.conectar()
+    def inserir_produto_carrinho(self, id_produto, cpf_cliente):
+        mydb = Conexao.conectar()
         mycursor = mydb.cursor()
 
-        sql = f"INSERT INTO tb_carrinho (cpf_cliente, id_produto) VALUES ('{cpf}', '{id_produto}')"
+        sql = f"INSERT INTO tb_carrinho (cpf_cliente, id_produto) VALUES ('{cpf_cliente}', '{id_produto}')"
+
         
-        mycursor.commit()
+        mycursor.execute(sql)
+        mydb.commit()
         mydb.close()
+        return True
+        
     
     def exibir_carrinho(self, id):
         mydb =  Conexao.conectar()

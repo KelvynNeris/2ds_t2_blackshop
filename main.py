@@ -113,12 +113,11 @@ def inserir_carrinho():
     if request.method == 'GET':
         return render_template("carrinho.html")
     else:
-
-        btn_carrinho = request.form['btn-carrinho']
-        cpf_cliente = session['usuario.logado']['cpf']
+        id_produto = request.form['btn-produto']
+        cpf_cliente = session.get('usuario_logado')['cpf']
 
         sistema=Sistema()
-        if sistema.inserir_carrinho(btn_carrinho, cpf_cliente):
+        if sistema.inserir_produto_carrinho(id_produto, cpf_cliente):
             return render_template("carrinho.html")
         else:
             return "ERRO AO INSERIR PRODUTO AO CARRINHO"
@@ -141,8 +140,4 @@ def comprar():
         return render_template("produto-unico.html", id_prd = id_prd)
 
 
-
-
 app.run(debug=True)
-
-        

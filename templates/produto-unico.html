@@ -192,8 +192,8 @@ color: black;
                             <input type="text" id="cmt" class="cmt">
                             <button type="submit">Adicionar comentário</button>
                         </form>
-                        <form action="#">
-                            <a href="/inserir_carrinho?produto={{id_produto}}" type="submit"><img src="/src/carro-removebg-preview.png" alt=""></a>
+                        <form action="/inserir_produto" method="post">
+                            <button type="submit"name="btn-produto" value="{{registro.id_produto}}" ><img src="/src/carro-removebg-preview.png" alt=""></button>
                         </form>
                     </div>
                 </div>
