@@ -77,7 +77,7 @@ class Sistema:
         mydb =  Conexao.conectar()
         mycursor = mydb.cursor()
 
-        sql = f"SELECT * from tb_produtos where categoria = '{id}'"
+        sql = f"SELECT * from tb_produtos where id_produto = '{id}'"
 
         mycursor.execute(sql)
         resultado = mycursor.fetchall()
@@ -89,29 +89,48 @@ class Sistema:
                 'nome_produto': id_produto[1],
                 'preco': id_produto[2],
                 'imagem_produto': id_produto[3],
-                'descricao': id_produto[5]            
+                'descricao': id_produto[5],
+                'id_produto': id_produto[0]
         })
 
         mycursor.execute(sql)
         mydb.close()
-    def exibir_produto1(self, id):
-            mydb =  Conexao.conectar()
-            mycursor = mydb.cursor()
+        return lista_carrinho 
+    
+    def inserir_comentario(self, comentario, nome_cliente):
+        mydb = Conexao.conectar()
+        mycursor = mydb.cursor()
 
-            sql = f"SELECT * FROM tb_produtos INNER JOIN tb_produtos WHERE id_produto = '{id}'"
+        sql = f"INSERT INTO tb_comentario (comentario_usuario, nome_usuario) VALUES ('{comentario}', '{nome_cliente}')"
 
-            mycursor.execute(sql)
-            resultado = mycursor.fetchall()
         
-            lista_produto1 = []
+        mycursor.execute(sql)
+        mydb.commit()
+        mydb.close()
+        return True
+    
+    def exibir_comentario(self, nome_cliente):
+        mydb = Conexao.conectar()
+        mycursor = mydb.cursor()
+        
+        sql = f"SELECT comentario_usuario from tb_comentario where nome_usuario = '{nome_cliente}'"
 
-            for id_produto in resultado:
-                lista_produto1.append({
-                    'nome_produto': id_produto[1],
-                    'preco': id_produto[2],
-                    'imagem_produto': id_produto[3],
-                    'descricao': id_produto[5]            
-            })
+        mycursor.execute(sql)
+        resultado = mycursor.fetchall()
+       
+        lista_comentario = []
 
-            mycursor.execute(sql)
-            mydb.close()
+        for coment in resultado:
+            lista_comentario.append({
+                'nome_produto': coment[1],
+                'preco': coment[2],
+                'imagem_produto': coment[3],
+                'descricao': coment[5],
+                'id_produto': coment[0]
+        })
+
+        mycursor.execute(sql)
+        mydb.close()
+        return lista_comentario
+        
+    

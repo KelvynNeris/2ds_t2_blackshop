@@ -53,6 +53,8 @@ def logar():
         else:
             session.clear()
             return redirect("/logar")
+    
+    #  ------------------------------------------ VERIFICAR ---------------------------------------------------------------
 
 """ @app.route("/verificar", methods = ['GET', 'POST'])
 def verificar_vendedor():
@@ -65,6 +67,11 @@ def verificar_vendedor():
         mensagem_erro = "você não tem permissão para acessar esta página"
         session.clear()
         return redirect("/verificar", mensagem_erro = mensagem_erro) """
+    
+    
+    
+    # -------------------------------------------------- PRODUTOS ---------------------------------------------------------
+    
     
 @app.route("/inserir_produtos", methods=['GET','POST'])
 def inserir_produtos():
@@ -100,6 +107,9 @@ def compras():
     #     return render_template("produtos.html",  lista_filtro = lista_filtro)
 
     
+    
+    # ---------------------------------------- CATEGORIA --------------------------------------------------------
+    
 @app.route("/categoria/<categoria>")
 def catgoria(categoria):
 
@@ -107,13 +117,17 @@ def catgoria(categoria):
     lista_filtro = sistema.filtro(categoria)
     return render_template("produtos-categoria.html",  lista_filtro = lista_filtro)
 
+
+#  ----------------------------------------- CARRINHO --------------------------------------------------------
+
+
     
 @app.route("/inserir_carrinho", methods=['GET', 'POST'])
 def inserir_carrinho():
     if request.method == 'GET':
         return render_template("carrinho.html")
     else:
-        id_produto = request.form['btn-produto']
+        id_produto = request.form['btn-carrinho']
         cpf_cliente = session.get('usuario_logado')['cpf']
 
         sistema=Sistema()
@@ -128,6 +142,19 @@ def carrinho():
     lista_carrinho = sistema.filtro(id)
     return render_template("carrinho.html",  lista_carrinho = lista_carrinho)
 
+@app.route("/exibir_carrinho")
+def exibir_carrinho():
+    if request.methods == 'GET':
+        return render_template("carrinho.html")
+    else:
+        id_produto = request.form['btn-carrinho'] 
+        
+        sistema = Sistema()
+        lista_produtos_c = sistema.exibir_carrinho(id)
+        return render_template("carrinho.hmtl", lista_produtos_c = lista_produtos_c)
+
+    
+    # ----------------------------- PAGINA DE COMPRA -----------------------------------------------
     
 @app.route("/compra", methods=['GET', 'POST'])
 def comprar():
@@ -135,9 +162,39 @@ def comprar():
         return render_template("produto-unico.html")
     else:
         btn_produto = request.form['btn-produto']
-        sistema=Sistema()
+        sistema = Sistema()
         id_prd = sistema.exibir_carrinho(btn_produto)
-        return render_template("produto-unico.html", id_prd = id_prd)
+        return render_template("produto-unico.html", id_prds = id_prd)
+    
+    
+    
+    # --------------------------- COMENTARIO ---------------------------------------------
+    
+@app.route("/inserir_comentario", methods=['GET', 'POST'])
+def comentario():
+    if request.method == 'GET':
+        render_template("produto-unico.html")
+    else:
+        comentario = request.form['comentario']
+        nome_cliente = session.get('usuario_logado')['nome']
+        sistema = Sistema()
+        if sistema.inserir_comentario(comentario, nome_cliente):
+            return render_template("produto-unico.html")
+        else: 
+            return "ERRO AO INSERIR COMENTARIO"
+
+@app.route("/exibir_comentario", methods=['GET', 'POST'])
+def exibir_comentario():
+    if request.method == 'GET':
+        render_template("produto-unico.html")
+    else:
+        sistema = Sistema()
+        nome_cliente = session.get('usuario_logado')['nome']
+        lista_comentario = sistema.lista_comentario(nome_cliente)
+        return render_template("produto-unico.html", lista_comentario = lista_comentario)
+        
+    
+    
 
 
 app.run(debug=True)
