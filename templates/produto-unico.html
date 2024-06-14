@@ -174,29 +174,45 @@ color: black;
                 <span class="material-symbols-outlined x">
                     <a href="/">close</a>
                 </span>
-                <div class="info-produto">
-                    <div class="img-desc-prec">
-                        <div class="img">
-                            <img src="" alt="">
+                {% for registro in id_prds %}
+                    <div class="info-produto">
+                        <div class="img-desc-prec">
+                            <div class="img">
+                                <img src="{{ registro.imagem_produto }}" alt="">
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="cmt-bot">
-                        <div class="text">
-                            <p>NOME</p>
-                            <p>PREÇO</p>
-                            <p>DESCRIÇÃO</p>
+                        <div class="cmt-bot">
+                            <div class="text">
+                                <p>{{ registro.nome_produto }}</p>
+                                <p>{{ registro.preco }}</p>
+                                <p>{{ registro.descricao }}</p>
+                            </div>
+
+                            <form action="/inserir_comentario" method="post" class="input">
+                                <label for="cmt">Comentar:</label>
+                                <input type="text" id="cmt" class="cmt" name="comentario">
+                                <button class="por" type="submit">Adicionar comentário</button>
+                                {% for c in lista_comentario %}
+                                    <h2>{{ c.nome_usuario}}</h2>
+                                    <h4>{{ c.comentario_usuario}}</h4>
+                                {% endfor %}
+                            </form>
+
+
+                            <form action="/inserir_carrinho" method="post">
+                                <button type="submit" class="button" id="btn-carrinho" name="btn-carrinho" value="{{ registro.id_produto}}"><img src="../static/img/carro-removebg-preview.png" alt="carro"></button>
+                            </form>
                         </div>
-                        <form class="input">
-                            <label for="cmt">Comentar:</label>
-                            <input type="text" id="cmt" class="cmt">
-                            <button type="submit">Adicionar comentário</button>
-                        </form>
-                        <form action="/inserir_produto" method="post">
-                            <button type="submit"name="btn-produto" value="{{registro.id_produto}}" ><img src="/src/carro-removebg-preview.png" alt=""></button>
-                        </form>
                     </div>
-                </div>
+                {% endfor %}
+            </div>
+
+            <div class="comentario">
+                {% for c in lista_comentario %}
+                    <h2>{{ c.nome_usuario}}</h2>
+                    <h4>{{ c.comentario_usuario}}</h4>
+                {% endfor %}
             </div>
         </section>
     </main>

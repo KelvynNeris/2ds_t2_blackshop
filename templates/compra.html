@@ -105,9 +105,9 @@
           </div>
           {% for registro in lista_categoria %}
             <a class="produto">
-              <img src="{{ registro[imagem_produto] }}" alt="">
-              <h2>{{ registro[nome_produto] }}</h2>
-              <p>{{ registro[preco] }}</p>
+              <img src="{{ registro.imagem_produto }}" alt="">
+              <h2>{{ registro.nome_produto }}</h2>
+              <p>{{ registro.preco}}</p>
             </a>
           {% endfor %}
         </div>
